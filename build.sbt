@@ -11,7 +11,7 @@ ThisBuild / organization := "com.github.ajozwik"
 
 name := "fast-cache"
 
-val targetJdk = "8"
+val targetJdk = "11"
 
 ThisBuild / scalafixDependencies += "com.github.vovapolu" %% "scaluzzi" % "0.1.23"
 
@@ -55,9 +55,9 @@ publish / skip := true
 
 val scalatestVersion = "3.2.17"
 
-val `ch.qos.logback_logback-classic`           = "ch.qos.logback"              % "logback-classic" % "1.2.12"               % Test
+val `ch.qos.logback_logback-classic`           = "ch.qos.logback"              % "logback-classic" % "1.2.12"
 val `com.github.blemale_scaffeine`             = "com.github.blemale"         %% "scaffeine"       % "5.2.1"
-val `com.typesafe.scala-logging_scala-logging` = "com.typesafe.scala-logging" %% "scala-logging"   % "3.9.5"                % Test
+val `com.typesafe.scala-logging_scala-logging` = "com.typesafe.scala-logging" %% "scala-logging"   % "3.9.5"
 val `org.scalatest_scalatest`                  = "org.scalatest"              %% "scalatest"       % scalatestVersion       % Test
 val `org.scalatestplus_scalacheck`             = "org.scalatestplus"          %% "scalacheck-1-17" % s"$scalatestVersion.0" % Test
 
