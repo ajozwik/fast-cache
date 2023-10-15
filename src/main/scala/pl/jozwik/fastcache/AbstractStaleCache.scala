@@ -72,7 +72,10 @@ class AbstractStaleCache[K, V](cache: Cache[K, V], staleCache: Cache[K, V])(impl
 
   }
 
-  override def invalidateAll(iterable: lang.Iterable[? <: K]): Unit = { cache.invalidateAll(iterable) }
+  override def invalidateAll(iterable: lang.Iterable[? <: K]): Unit = {
+    cache.invalidateAll(iterable)
+    ex.execute(() => staleCache.invalidateAll(iterable))
+  }
 
   override def invalidateAll(): Unit = {
     cache.invalidateAll()
@@ -89,7 +92,10 @@ class AbstractStaleCache[K, V](cache: Cache[K, V], staleCache: Cache[K, V])(impl
     m
   }
 
-  override def cleanUp(): Unit = cache.cleanUp()
+  override def cleanUp(): Unit = {
+    cache.cleanUp()
+    ex.execute(() => staleCache.cleanUp())
+  }
 
   override def policy(): Policy[K, V] = cache.policy()
 

@@ -34,10 +34,11 @@ class FastCacheSpec extends AbstractSpec {
       underlyingCache.cache.getIfPresent(kk) shouldBe kk
       underlyingCache.staleCache.getIfPresent(kk) shouldBe kk
       logger.debug(s"invalidate $kk")
-      cache.invalidate(kk)
+      underlyingCache.cache.invalidate(kk)
       cache.cleanUp()
       underlyingCache.cache.getIfPresent(kk) shouldBe null
       underlyingCache.staleCache.getIfPresent(kk) shouldBe kk
+      cache.asMap()
       cache.getIfPresent(kk) shouldBe Option(kk)
       cache.getAllPresent(Iterable.empty) shouldBe empty
       cache.getAll(Iterable.empty, keys => keys.map(k => k -> k).toMap) shouldBe empty
