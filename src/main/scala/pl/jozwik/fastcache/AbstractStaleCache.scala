@@ -9,7 +9,8 @@ import java.util.stream.{ Collectors, StreamSupport }
 import java.util.{ function, Objects }
 import scala.concurrent.ExecutionContext
 
-class AbstractStaleCache[K, V](cache: Cache[K, V], staleCache: Cache[K, V])(implicit ex: ExecutionContext) extends Cache[K, V] {
+abstract class AbstractStaleCache[K, V](cache: Cache[K, V], staleCache: Cache[K, V])(implicit ex: ExecutionContext)
+  extends Cache[K, V] {
 
   override def getIfPresent(k: K): V = {
     val cv = cache.getIfPresent(k)
